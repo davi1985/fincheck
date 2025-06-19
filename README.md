@@ -1,5 +1,5 @@
 <h1 align="center">Fincheck</h1>
-<img src=".git/screenshots/preview.png" alt="preview">
+<img src="./screenshots/preview.png" alt="preview">
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
@@ -67,15 +67,15 @@ Describe your project
 
 ### Login Page
 
-<img src=".git/screenshots/login.jpg"  alt="Login Preview" width="400px">
+<img src="./screenshots/login.jpg"  alt="Login Preview" width="400px">
 
 ### Home Page
 
-<img img src=".git/screenshots/home.jpg"  alt="Home Preview" width="400px">
+<img img src="./screenshots/home.jpg"  alt="Home Preview" width="400px">
 
 ### Home Page with Filters
 
-<img  src=".git/screenshots/modal.png"  alt="Filtered Home Preview" width="400px">
+<img  src="./screenshots/modal.png"  alt="Filtered Home Preview" width="400px">
 
 ## :rocket: Technologies
 
