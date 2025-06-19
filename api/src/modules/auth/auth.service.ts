@@ -1,9 +1,15 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { AuthenticateDto } from './dto/authenticate.dto';
+import {
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+
 import { UsersRepository } from 'src/shared/database/repositories/users.repositories';
-import { compare } from 'bcryptjs';
+import { compare, hash } from 'bcryptjs';
 import { type User } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
+import { SignUpDto } from './dto/signup.dto';
+import { SignInDto } from './dto/signin.dto';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +18,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async authenticate({ email, password }: AuthenticateDto) {
+  async signin({ email, password }: SignInDto) {
     const user = await this.usersRepository.findByEmail({
       where: { email },
     });
@@ -23,9 +29,58 @@ export class AuthService {
 
     await this.validatePassword(password, user);
 
-    const accessToken = await this.jwtService.signAsync({ sub: user.id });
+    const accessToken = await this.generateAccessToken(user.id);
 
     return { accessToken };
+  }
+
+  async signup({ name, email, password }: SignUpDto) {
+    const emailExists = await this.usersRepository.findByEmail({
+      where: { email },
+      select: { id: true },
+    });
+
+    if (emailExists) {
+      throw new ConflictException('This Email already in use');
+    }
+
+    const hashedPassword = await this.encryptPassword(password);
+
+    const user = await this.usersRepository.create({
+      data: {
+        email,
+        name,
+        password: hashedPassword,
+        categories: {
+          createMany: {
+            data: [
+              { name: 'Salário', icon: 'travel', type: 'INCOME' },
+              { name: 'Freelance', icon: 'travel', type: 'INCOME' },
+              { name: 'Outro', icon: 'other', type: 'INCOME' },
+              { name: 'Casa', icon: 'home', type: 'EXPENSE' },
+              { name: 'Alimentação', icon: 'food', type: 'EXPENSE' },
+              { name: 'Educação', icon: 'education', type: 'EXPENSE' },
+              { name: 'Lazer', icon: 'fun', type: 'EXPENSE' },
+              { name: 'Outro', icon: 'other', type: 'INCOME' },
+            ],
+          },
+        },
+      },
+    });
+
+    const accessToken = await this.generateAccessToken(user.id);
+
+    return {
+      accessToken,
+    };
+  }
+
+  private generateAccessToken(userId: string) {
+    return this.jwtService.signAsync({ sub: userId });
+  }
+
+  private async encryptPassword(passPlainText: string) {
+    return hash(passPlainText, 12);
   }
 
   private async validatePassword(password: string, user: User) {

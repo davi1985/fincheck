@@ -1,13 +1,18 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { UsersService } from './users.service';
+
+interface AuthenticatedRequest extends Request {
+  userId: string;
+}
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  @Get('me')
+  me(@Req() request: AuthenticatedRequest) {
+    console.log({ userId: request?.userId });
+    return this.usersService.getUserById('user-id');
   }
 }
