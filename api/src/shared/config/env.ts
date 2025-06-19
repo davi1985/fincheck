@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-import { ValidationError } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { IsNotEmpty, IsString, validateSync } from 'class-validator';
+
+import { ValidationError } from '@nestjs/common';
 
 class Env {
   @IsString()
@@ -16,7 +16,7 @@ class Env {
 export const env = plainToInstance(Env, {
   jwtSecret: process.env.JWT_SECRET,
   databaseUrl: process.env.DATABASE_URL,
-}) as Env;
+});
 
 const errors = validateSync(env) as ValidationError[];
 

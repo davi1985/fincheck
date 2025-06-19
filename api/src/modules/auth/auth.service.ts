@@ -1,15 +1,16 @@
+import { compare, hash } from 'bcryptjs';
+
 import {
   ConflictException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-
-import { UsersRepository } from 'src/shared/database/repositories/users.repositories';
-import { compare, hash } from 'bcryptjs';
-import { type User } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
-import { SignUpDto } from './dto/signup.dto';
+import { type User } from '@prisma/client';
+
+import { UsersRepository } from '../../shared/database/repositories/users.repositories';
 import { SignInDto } from './dto/signin.dto';
+import { SignUpDto } from './dto/signup.dto';
 
 @Injectable()
 export class AuthService {

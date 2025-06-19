@@ -1,5 +1,7 @@
-import { Controller, Get, Req } from '@nestjs/common';
 import { Request } from 'express';
+
+import { Controller, Get, Req } from '@nestjs/common';
+
 import { UsersService } from './users.service';
 
 interface AuthenticatedRequest extends Request {
