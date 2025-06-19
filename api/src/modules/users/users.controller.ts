@@ -14,7 +14,6 @@ export class UsersController {
 
   @Get('me')
   me(@Req() request: AuthenticatedRequest) {
-    console.log({ userId: request?.userId });
-    return this.usersService.getUserById('user-id');
+    return this.usersService.getUserById(request.userId);
   }
 }

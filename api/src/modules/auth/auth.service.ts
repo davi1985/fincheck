@@ -20,7 +20,7 @@ export class AuthService {
   ) {}
 
   async signin({ email, password }: SignInDto) {
-    const user = await this.usersRepository.findByEmail({
+    const user = await this.usersRepository.findUnique({
       where: { email },
     });
 
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   async signup({ name, email, password }: SignUpDto) {
-    const emailExists = await this.usersRepository.findByEmail({
+    const emailExists = await this.usersRepository.findUnique({
       where: { email },
       select: { id: true },
     });

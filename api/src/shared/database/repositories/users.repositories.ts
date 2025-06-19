@@ -6,7 +6,6 @@ import { IUsersRepository } from './users.repository.interface';
 
 @Injectable()
 export class UsersRepository implements IUsersRepository {
-  user: any;
   constructor(private readonly prismaService: PrismaService) {}
 
   create(createDto: Prisma.UserCreateArgs) {
@@ -15,7 +14,7 @@ export class UsersRepository implements IUsersRepository {
     });
   }
 
-  findByEmail(findUniqueDto: Prisma.UserFindUniqueArgs) {
+  findUnique(findUniqueDto: Prisma.UserFindUniqueArgs) {
     return this.prismaService.user.findUnique(findUniqueDto);
   }
 }
