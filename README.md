@@ -24,7 +24,8 @@
 - [x] NestJS project structure
 - [x] Docker PostegresSQL setup
 - [x] Prisma setup
-- [ ] User creation and login
+- [x] User creation
+- [x] Access Token - JWT
 - [ ] Expense CRUD operations
 - [ ] Category and account management
 - [ ] Filtering by category, date, and account
