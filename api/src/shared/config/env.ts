@@ -3,6 +3,11 @@ import { IsNotEmpty, IsString, validateSync } from 'class-validator';
 
 import { ValidationError } from '@nestjs/common';
 
+type EnvType = {
+  jwtSecret?: string;
+  databaseUrl?: string;
+};
+
 class Env {
   @IsString()
   @IsNotEmpty()
@@ -13,7 +18,7 @@ class Env {
   databaseUrl: string;
 }
 
-export const env = plainToInstance(Env, {
+export const env = plainToInstance<Env, EnvType>(Env, {
   jwtSecret: process.env.JWT_SECRET,
   databaseUrl: process.env.DATABASE_URL,
 });
