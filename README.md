@@ -22,14 +22,13 @@
 ### Back-end
 
 - [x] NestJS project structure
-- [x] Docker PostegresSQL setup
+- [x] Docker PostgresSQL setup
 - [x] Prisma setup
 - [x] User creation
 - [x] Access Token - JWT
-- [ ] Expense CRUD operations
-- [ ] Category and account management
-- [ ] Filtering by category, date, and account
-- [ ] API documentation (Swagger)
+- [x] Bank Account
+- [x] Category
+- [ ] Transactions
 
 ### Front-end (Web)
 
