@@ -1,4 +1,4 @@
-import { CategoriesRepository } from 'src/shared/database/repositories/categories.repositories';
+import { CategoriesRepository } from 'src/shared/database/repositories/categories/categories.repositories';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

@@ -8,7 +8,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { type User } from '@prisma/client';
 
-import { UsersRepository } from '../../shared/database/repositories/users.repositories';
+import { UsersRepository } from '../../shared/database/repositories/users/users.repositories';
 import { SignInDto } from './dto/signin.dto';
 import { SignUpDto } from './dto/signup.dto';
 

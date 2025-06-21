@@ -1,4 +1,4 @@
-import { UsersRepository } from 'src/shared/database/repositories/users.repositories';
+import { UsersRepository } from 'src/shared/database/repositories/users/users.repositories';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
