@@ -11,4 +11,8 @@ export class CategoriesRepository implements ICategoriesRepository {
   findMany(findManyDto: Prisma.CategoryFindManyArgs) {
     return this.prismaService.category.findMany(findManyDto);
   }
+
+  findFirst(findFirstDto: Prisma.CategoryFindFirstArgs) {
+    return this.prismaService.category.findFirst(findFirstDto);
+  }
 }
