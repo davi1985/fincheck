@@ -28,7 +28,7 @@
 - [x] Access Token - JWT
 - [x] Bank Account
 - [x] Category
-- [ ] Transactions
+- [x] Transactions
 
 ### Front-end (Web)
 
