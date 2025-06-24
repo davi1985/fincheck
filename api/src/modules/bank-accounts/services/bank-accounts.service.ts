@@ -1,24 +1,13 @@
 import { BankAccountsRepository } from 'src/shared/database/repositories/bank-accounts/bank-accounts.repositories';
 import { Injectable } from '@nestjs/common';
 
-import { CreateBankAccountDto } from '../dto/create-bank-account.dto';
-import { UpdateBankAccountDto } from '../dto/update-bank-account.dto';
+import {
+  CreateParams,
+  FindAllByUserIdParams,
+  RemoveParams,
+  UpdateParams,
+} from './types/bank-account.types';
 import { ValidateBankAccountOwnershipService } from './validate-bank-account-ownership.service';
-
-type CreateParams = {
-  userId: string;
-  createBankAccountDto: CreateBankAccountDto;
-};
-
-type FindAllByUserIdParams = { userId: string };
-
-type UpdateParams = {
-  userId: string;
-  bankAccountId: string;
-  updateBankAccountDto: UpdateBankAccountDto;
-};
-
-type RemoveParams = { userId: string; bankAccountId: string };
 
 @Injectable()
 export class BankAccountsService {

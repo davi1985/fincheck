@@ -3,32 +3,13 @@ import { Injectable } from '@nestjs/common';
 
 import { ValidateBankAccountOwnershipService } from '../../bank-accounts/services/validate-bank-account-ownership.service';
 import { ValidateCategoryOwnershipService } from '../../categories/services/validate-category-ownership.service';
-import { CreateTransactionDto } from '../dto/create-transaction.dto';
-import { UpdateTransactionDto } from '../dto/update-transaction.dto';
+import {
+  CreateParams,
+  RemoveParams,
+  UpdateParams,
+  ValidateEntitiesParams,
+} from './types/transactions.types';
 import { ValidateTransactionOwnershipService } from './validate-transaction-ownership.service';
-
-type CreateParams = {
-  userId: string;
-  createTransactionDto: CreateTransactionDto;
-};
-
-type UpdateParams = {
-  userId: string;
-  transactionId: string;
-  updateTransactionDto: UpdateTransactionDto;
-};
-
-type RemoveParams = {
-  userId: string;
-  transactionId: string;
-};
-
-type ValidateParams = {
-  userId: string;
-  bankAccountId?: string;
-  categoryId?: string;
-  transactionId?: string;
-};
 
 @Injectable()
 export class TransactionsService {
@@ -96,7 +77,7 @@ export class TransactionsService {
     bankAccountId,
     categoryId,
     transactionId,
-  }: ValidateParams) {
+  }: ValidateEntitiesParams) {
     await Promise.all([
       transactionId &&
         this.validateTransactionOwnershipService.validate({

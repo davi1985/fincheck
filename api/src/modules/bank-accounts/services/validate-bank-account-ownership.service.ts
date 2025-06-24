@@ -1,10 +1,7 @@
 import { BankAccountsRepository } from 'src/shared/database/repositories/bank-accounts/bank-accounts.repositories';
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-type ValidateParams = {
-  userId: string;
-  bankAccountId: string;
-};
+import { ValidateBankAccountParams } from './types/bank-account.types';
 
 @Injectable()
 export class ValidateBankAccountOwnershipService {
@@ -12,7 +9,7 @@ export class ValidateBankAccountOwnershipService {
     private readonly bankAccountsRepository: BankAccountsRepository,
   ) {}
 
-  async validate({ userId, bankAccountId }: ValidateParams) {
+  async validate({ userId, bankAccountId }: ValidateBankAccountParams) {
     const isOwner = await this.bankAccountsRepository.findFist({
       where: { id: bankAccountId, userId },
     });
