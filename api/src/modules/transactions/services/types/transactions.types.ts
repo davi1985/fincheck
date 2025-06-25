@@ -6,6 +6,11 @@ export type CreateParams = {
   createTransactionDto: CreateTransactionDto;
 };
 
+export type FindAllParams = {
+  userId: string;
+  filters: { month: number; year: number };
+};
+
 export type UpdateParams = {
   userId: string;
   transactionId: string;

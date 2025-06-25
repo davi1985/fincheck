@@ -5,6 +5,7 @@ import { ValidateBankAccountOwnershipService } from '../../bank-accounts/service
 import { ValidateCategoryOwnershipService } from '../../categories/services/validate-category-ownership.service';
 import {
   CreateParams,
+  FindAllParams,
   RemoveParams,
   UpdateParams,
   ValidateEntitiesParams,
@@ -43,8 +44,16 @@ export class TransactionsService {
     });
   }
 
-  findAllByUserId(userId: string) {
-    return this.transactionsRepository.findAll({ where: { userId } });
+  findAllByUserId({ userId, filters }: FindAllParams) {
+    return this.transactionsRepository.findAll({
+      where: {
+        userId,
+        date: {
+          gte: new Date(Date.UTC(filters.year, filters.month)),
+          lt: new Date(Date.UTC(filters.year, filters.month + 1)),
+        },
+      },
+    });
   }
 
   async update({ userId, transactionId, updateTransactionDto }: UpdateParams) {
