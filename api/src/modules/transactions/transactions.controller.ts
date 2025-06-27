@@ -1,4 +1,6 @@
 import { ActiveUserId } from 'src/shared/decorators/active-user-id';
+import { OptionalParseEnumPipe } from 'src/shared/pipes/optional-parse-enum-pipe';
+import { OptionalParseUUIDPipe } from 'src/shared/pipes/optional-parse-uuid-pipe';
 import {
   Body,
   Controller,
@@ -16,6 +18,7 @@ import {
 
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { TransactionType } from './entities/transaction';
 import { TransactionsService } from './services/transactions.service';
 
 @Controller('transactions')
@@ -35,10 +38,13 @@ export class TransactionsController {
     @ActiveUserId() userId: string,
     @Query('month', ParseIntPipe) month: number,
     @Query('year', ParseIntPipe) year: number,
+    @Query('bankAccountId', OptionalParseUUIDPipe) bankAccountId?: string,
+    @Query('type', new OptionalParseEnumPipe(TransactionType))
+    type?: TransactionType,
   ) {
     return this.transactionsService.findAllByUserId({
       userId,
-      filters: { month, year },
+      filters: { month, year, bankAccountId, type },
     });
   }
 

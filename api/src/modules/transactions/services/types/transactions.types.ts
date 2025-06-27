@@ -1,5 +1,6 @@
 import { CreateTransactionDto } from '../../dto/create-transaction.dto';
 import { UpdateTransactionDto } from '../../dto/update-transaction.dto';
+import { TransactionType } from '../../entities/transaction';
 
 export type CreateParams = {
   userId: string;
@@ -8,7 +9,12 @@ export type CreateParams = {
 
 export type FindAllParams = {
   userId: string;
-  filters: { month: number; year: number };
+  filters: {
+    month: number;
+    year: number;
+    bankAccountId?: string;
+    type?: TransactionType;
+  };
 };
 
 export type UpdateParams = {

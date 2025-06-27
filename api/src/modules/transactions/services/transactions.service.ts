@@ -48,6 +48,12 @@ export class TransactionsService {
     return this.transactionsRepository.findAll({
       where: {
         userId,
+        ...(filters.bankAccountId && {
+          bankAccount: {
+            id: filters.bankAccountId,
+          },
+          type: filters.type,
+        }),
         date: {
           gte: new Date(Date.UTC(filters.year, filters.month)),
           lt: new Date(Date.UTC(filters.year, filters.month + 1)),
