@@ -12,7 +12,9 @@ export class BankAccountsRepository implements IBankAccountsRepository {
     return this.prismaService.bankAccount.create(createBankAccountDto);
   }
 
-  findAll(findAllDto: Prisma.BankAccountFindManyArgs) {
+  findAll<T extends Prisma.BankAccountFindManyArgs>(
+    findAllDto: Prisma.SelectSubset<T, Prisma.BankAccountFindManyArgs>,
+  ) {
     return this.prismaService.bankAccount.findMany(findAllDto);
   }
 

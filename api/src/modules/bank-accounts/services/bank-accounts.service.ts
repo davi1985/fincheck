@@ -30,11 +30,38 @@ export class BankAccountsService {
     });
   }
 
-  findAllByUserId({ userId }: FindAllByUserIdParams) {
-    return this.bankAccountsRepository.findAll({
+  async findAllByUserId({ userId }: FindAllByUserIdParams) {
+    const bankAccounts = await this.bankAccountsRepository.findAll({
       where: {
         userId,
       },
+      include: {
+        transactions: {
+          select: {
+            value: true,
+            type: true,
+          },
+        },
+      },
+    });
+
+    return bankAccounts.map(({ transactions, ...bankAccount }) => {
+      const totalTransactions = transactions.reduce(
+        (acc, transaction) =>
+          acc +
+          (transaction.type === 'INCOME'
+            ? transaction.value
+            : -transaction.value),
+        0,
+      );
+
+      const currentBalance = bankAccount.initialBalance + totalTransactions;
+
+      return {
+        ...bankAccount,
+        currentBalance,
+        totalTransactions,
+      };
     });
   }
 
