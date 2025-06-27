@@ -60,7 +60,7 @@ export class BankAccountsService {
       return {
         ...bankAccount,
         currentBalance,
-        totalTransactions,
+        transactions,
       };
     });
   }
