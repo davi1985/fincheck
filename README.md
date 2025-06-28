@@ -29,6 +29,7 @@
 - [x] Bank Account
 - [x] Category
 - [x] Transactions
+- [x] Transactions filters
 
 ### Front-end (Web)
 
