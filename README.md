@@ -33,7 +33,7 @@
 
 ### Front-end (Web)
 
-- [ ] Project setup with React + Vite
+- [x] Project setup with React + Vite + Tailwind CSS
 - [ ] Login page UI
 - [ ] Home page with expense list
 - [ ] Expense registration form
