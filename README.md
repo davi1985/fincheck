@@ -34,7 +34,9 @@
 ### Front-end (Web)
 
 - [x] Project setup with React + Vite + Tailwind CSS
-- [ ] Login page UI
+- [x] Auth layout
+- [x] Login page UI
+- [x] Register page UI
 - [ ] Home page with expense list
 - [ ] Expense registration form
 - [ ] Category and account management screens

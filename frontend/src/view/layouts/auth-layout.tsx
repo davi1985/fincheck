@@ -3,7 +3,7 @@ import illustration from "../../assets/illustration.png";
 import { Logo } from "../components/logo";
 
 export const AuthLayout = () => (
-  <div className="flex w-full h-screen">
+  <div className="flex w-full h-screen max-w-[1440px] mx-auto">
     <div className="w-full h-full flex justify-center items-center flex-col gap-16 lg:w-1/2">
       <Logo className="h-6 text-gray-500" />
 
