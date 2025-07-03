@@ -11,9 +11,7 @@ export const useRegisterController = () => {
     resolver: zodResolver(schema),
   });
 
-  const handleSubmit = hookFormHandleSubmit((data) => {
-    schema.parse(data);
-  });
+  const handleSubmit = hookFormHandleSubmit((data) => {});
 
   return { handleSubmit, errors, register };
 };
