@@ -4,7 +4,7 @@ import { Input } from "../../components/input";
 import { useRegisterController } from "./use-register-controller";
 
 export const Register = () => {
-  const { handleSubmit, errors, register } = useRegisterController();
+  const { handleSubmit, errors, register, isPending } = useRegisterController();
   return (
     <>
       <div className="flex flex-col items-center gap-16">
@@ -35,7 +35,7 @@ export const Register = () => {
             {...register("password")}
           />
 
-          <Button type="submit" className="mt-2">
+          <Button type="submit" className="mt-2" loading={isPending}>
             Criar conta
           </Button>
         </form>
