@@ -37,6 +37,8 @@
 - [x] Auth layout
 - [x] Login page UI
 - [x] Register page UI
+- [x] Automatically Signin
+- [x] Signout
 - [ ] Home page with expense list
 - [ ] Expense registration form
 - [ ] Category and account management screens
