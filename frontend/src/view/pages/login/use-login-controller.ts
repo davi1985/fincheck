@@ -5,6 +5,7 @@ import { authService } from "../../../app/services/auth-service";
 import type { SigninParams } from "../../../app/services/auth-service/signin";
 import { schema, type FormData } from "./schema";
 import toast from "react-hot-toast";
+import { useAuth } from "../../../app/hooks/use-auth";
 
 export const useLoginController = () => {
   const {
@@ -20,10 +21,12 @@ export const useLoginController = () => {
     mutationFn: async (data: SigninParams) => authService.signin(data),
   });
 
+  const { signin } = useAuth();
+
   const handleSubmit = hookFormSubmit(async (data) => {
     try {
       const { accessToken } = await mutateAsync(data);
-      console.log({ accessToken });
+      signin({ accessToken });
     } catch {
       toast.error("Credenciais inválidas");
     }
