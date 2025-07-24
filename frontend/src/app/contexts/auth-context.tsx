@@ -73,9 +73,11 @@ export const AuthProvider = ({ children }: AuthContextParams) => {
     [isSuccess, signedIn, signin, signout]
   );
 
-  if (isFetching) {
-    return <LaunchScreen />;
-  }
+  return (
+    <AuthContext.Provider value={values}>
+      <LaunchScreen isLoading={isFetching} />
 
-  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+      {!isFetching && children}
+    </AuthContext.Provider>
+  );
 };
