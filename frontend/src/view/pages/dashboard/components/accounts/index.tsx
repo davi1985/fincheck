@@ -1,14 +1,15 @@
 import "swiper/css";
 
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { EyeIcon } from "../../../components/icons/eye-icon";
+import { EyeIcon } from "../../../../components/icons/eye-icon";
 import { AccountCard } from "./account-card";
-import { formatCurrency } from "../../../../app/utils/format-currency";
+import { formatCurrency } from "../../../../../app/utils/format-currency";
 
 import { SwiperSlide, Swiper } from "swiper/react";
 import { AccountsSliderNavigation } from "./accounts-slider-navigation";
+import { useAccountsController } from "./use-accounts-controller";
 
 export const Accounts = () => {
+  const { sliderState, setSliderState, windowWidth } = useAccountsController();
   return (
     <div className="bg-teal-900 rounded-2xl w-full h-full md:p-10 px-4 py-8 flex flex-col">
       <div>
@@ -25,9 +26,18 @@ export const Accounts = () => {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col justify-end">
+      <div className="flex-1 flex flex-col justify-end mt-10 md:mt-0">
         <div>
-          <Swiper spaceBetween={16} slidesPerView={2.15}>
+          <Swiper
+            spaceBetween={16}
+            slidesPerView={windowWidth.width >= 500 ? 2.1 : 1.3}
+            onSlideChange={(swiper) => {
+              setSliderState({
+                isBeginning: swiper.isBeginning,
+                isEnd: swiper.isEnd,
+              });
+            }}
+          >
             <div
               className="flex items-center justify-between mb-4"
               slot="container-start"
@@ -36,7 +46,10 @@ export const Accounts = () => {
                 Minhas contas
               </strong>
 
-              <AccountsSliderNavigation />
+              <AccountsSliderNavigation
+                isBeginning={sliderState.isBeginning}
+                isEnd={sliderState.isEnd}
+              />
             </div>
 
             <SwiperSlide>
