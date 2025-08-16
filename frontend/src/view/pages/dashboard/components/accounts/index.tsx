@@ -1,4 +1,4 @@
-import "swiper/css";
+import "swiper/swiper-bundle.css";
 
 import { EyeIcon } from "../../../../components/icons/eye-icon";
 import { AccountCard } from "./account-card";
@@ -10,6 +10,7 @@ import { useAccountsController } from "./use-accounts-controller";
 
 export const Accounts = () => {
   const { sliderState, setSliderState, windowWidth } = useAccountsController();
+
   return (
     <div className="bg-teal-900 rounded-2xl w-full h-full md:p-10 px-4 py-8 flex flex-col">
       <div>
