@@ -6,7 +6,7 @@ type AccountsSliderNavigationProps = {
   isEnd: boolean;
 };
 
-export const AccountsSliderNavigation = ({
+export const SliderNavigation = ({
   isBeginning,
   isEnd,
 }: AccountsSliderNavigationProps) => {
