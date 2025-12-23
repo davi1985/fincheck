@@ -5,5 +5,8 @@ export const useTransactionsController = () => {
 
   return {
     areValuesVisible,
+    transactions: [],
+    isInitialLoading: false,
+    isLoading: false,
   };
 };

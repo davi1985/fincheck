@@ -17,5 +17,7 @@ export const useAccountsController = () => {
     windowWidth,
     areValuesVisible,
     toggleValuesVisibility,
+    isLoading: false,
+    accounts: [],
   };
 };
