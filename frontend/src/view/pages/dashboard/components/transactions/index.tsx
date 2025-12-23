@@ -69,7 +69,7 @@ export const Transactions = () => {
 
             <div>
               <strong className="font-bold tracking-[-0.5px] block">
-                Salario
+                Salário
               </strong>
               <span className="text-sm text-gray-600">04/06/2026</span>
             </div>
