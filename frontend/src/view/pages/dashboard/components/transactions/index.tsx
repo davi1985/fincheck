@@ -1,14 +1,18 @@
 import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { TransactionsIcon } from "../../../../components/icons/transactions-icon";
-import { FilterIcon } from "../../../../components/icons/filter-icon";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MONTHS } from "../../../../../app/config/constants";
-import { SliderOption } from "./slider-option";
-import { SliderNavigation } from "./slider-navigation";
+import { cn } from "../../../../../app/utils/cn";
 import { formatCurrency } from "../../../../../app/utils/format-currency";
 import { CategoryIcon } from "../../../../components/icons/categories/category-icon";
+import { FilterIcon } from "../../../../components/icons/filter-icon";
+import { TransactionsIcon } from "../../../../components/icons/transactions-icon";
+import { SliderNavigation } from "./slider-navigation";
+import { SliderOption } from "./slider-option";
+import { useTransactionsController } from "./use-transactions-controller";
 
 export const Transactions = () => {
+  const { areValuesVisible } = useTransactionsController();
+
   return (
     <div className="bg-gray-100 rounded-2xl w-full h-full md:p-10 px-4 py-8 flex flex-col">
       <header>
@@ -58,7 +62,12 @@ export const Transactions = () => {
             </div>
           </div>
 
-          <span className="font-medium tracking-[-0.5px] text-red-800">
+          <span
+            className={cn(
+              "font-medium tracking-[-0.5px] text-red-800",
+              !areValuesVisible && "blur-sm"
+            )}
+          >
             {formatCurrency(-20)}
           </span>
         </div>
@@ -75,7 +84,12 @@ export const Transactions = () => {
             </div>
           </div>
 
-          <span className="font-medium tracking-[-0.5px] text-green-800">
+          <span
+            className={cn(
+              "font-medium tracking-[-0.5px] text-green-800",
+              !areValuesVisible && "blur-sm"
+            )}
+          >
             {formatCurrency(-20)}
           </span>
         </div>
