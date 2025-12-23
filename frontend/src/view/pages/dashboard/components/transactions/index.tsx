@@ -1,16 +1,13 @@
 import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { MONTHS } from "../../../../../app/config/constants";
 import { cn } from "../../../../../app/utils/cn";
 import { formatCurrency } from "../../../../../app/utils/format-currency";
 import { CategoryIcon } from "../../../../components/icons/categories/category-icon";
 import { FilterIcon } from "../../../../components/icons/filter-icon";
 import { TransactionsIcon } from "../../../../components/icons/transactions-icon";
-import { SliderNavigation } from "./slider-navigation";
-import { SliderOption } from "./slider-option";
-import { useTransactionsController } from "./use-transactions-controller";
 import { Spinner } from "../../../../components/spinner";
-import emptyStateIllustration from "../../../../../assets/empty-state.svg";
+import { EmptyTransactions } from "./components/empty-transactions";
+import { MonthSlider } from "./components/month-slider";
+import { useTransactionsController } from "./use-transactions-controller";
 
 export const Transactions = () => {
   const { areValuesVisible, isInitialLoading, transactions, isLoading } =
@@ -44,21 +41,7 @@ export const Transactions = () => {
             </div>
 
             <div className="mt-6 relative">
-              <Swiper centeredSlides grabCursor slidesPerView={3}>
-                <SliderNavigation />
-
-                {MONTHS.map((month, index) => (
-                  <SwiperSlide key={month}>
-                    {({ isActive }) => (
-                      <SliderOption
-                        isActive={isActive}
-                        month={month}
-                        index={index}
-                      />
-                    )}
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              <MonthSlider />
             </div>
           </header>
 
@@ -69,17 +52,7 @@ export const Transactions = () => {
               </div>
             )}
 
-            {(!hasTransactions || !isLoading) && (
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <img
-                  src={emptyStateIllustration}
-                  alt="Ilustração de estado vazio"
-                />
-                <p className="text-gray-700">
-                  Não encontramos nenhuma transação!
-                </p>
-              </div>
-            )}
+            {(!hasTransactions || !isLoading) && <EmptyTransactions />}
 
             {hasTransactions && !isLoading && (
               <>
