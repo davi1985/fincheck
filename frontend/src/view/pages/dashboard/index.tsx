@@ -2,6 +2,7 @@ import { Logo } from "../../components/logo";
 import { UserMenu } from "../../components/user-menu";
 import { Accounts } from "./components/accounts";
 import { DashboardProvider } from "./components/dashboard-context";
+import { Fab } from "./components/Fab";
 import { Transactions } from "./components/transactions";
 
 export const Dashboard = () => (
@@ -20,6 +21,8 @@ export const Dashboard = () => (
           <Transactions />
         </div>
       </main>
+
+      <Fab />
     </div>
   </DashboardProvider>
 );

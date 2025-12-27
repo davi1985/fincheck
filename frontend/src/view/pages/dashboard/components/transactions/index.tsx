@@ -1,13 +1,12 @@
-import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { cn } from "../../../../../app/utils/cn";
 import { formatCurrency } from "../../../../../app/utils/format-currency";
 import { CategoryIcon } from "../../../../components/icons/categories/category-icon";
 import { FilterIcon } from "../../../../components/icons/filter-icon";
-import { TransactionsIcon } from "../../../../components/icons/transactions-icon";
 import { Spinner } from "../../../../components/spinner";
 import { EmptyTransactions } from "./components/empty-transactions";
 import { MonthSlider } from "./components/month-slider";
 import { useTransactionsController } from "./use-transactions-controller";
+import { TransactionTypeDropdown } from "./transaction-type-dropdown";
 
 export const Transactions = () => {
   const { areValuesVisible, isInitialLoading, transactions, isLoading } =
@@ -27,13 +26,7 @@ export const Transactions = () => {
         <>
           <header>
             <div className="flex items-center justify-between">
-              <button className="flex items-center gap-2">
-                <TransactionsIcon />
-                <span className="text-sm text-gray-800 font-medium tracking-[-0.5px]">
-                  Transações
-                </span>
-                <ChevronDownIcon className="text-gray-900" />
-              </button>
+              <TransactionTypeDropdown />
 
               <button>
                 <FilterIcon />
@@ -71,7 +64,7 @@ export const Transactions = () => {
                   <span
                     className={cn(
                       "font-medium tracking-[-0.5px] text-red-800",
-                      !areValuesVisible && "blur-sm"
+                      !areValuesVisible && "blur-sm",
                     )}
                   >
                     {formatCurrency(-20)}
@@ -93,7 +86,7 @@ export const Transactions = () => {
                   <span
                     className={cn(
                       "font-medium tracking-[-0.5px] text-green-800",
-                      !areValuesVisible && "blur-sm"
+                      !areValuesVisible && "blur-sm",
                     )}
                   >
                     {formatCurrency(-20)}
