@@ -1,6 +1,6 @@
-interface TrashIconProps {
+type TrashIconProps = {
   className?: string;
-}
+};
 
 export const TrashIcon = ({ className }: TrashIconProps) => (
   <svg

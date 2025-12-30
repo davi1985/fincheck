@@ -1,11 +1,12 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { Modal } from "../../../../../../components/modal";
-import { Button } from "../../../../../../components/button";
-import { useFiltersTransactionsModal } from "./use-filters-transactions-modal";
-import { cn } from "../../../../../../../app/utils/cn";
 
-type FiltersTransactionsModalProps = {
-  open: boolean;
+import { useFiltersModal } from "./use-filters-modal";
+import { Modal } from "../../../../../components/modal";
+import { cn } from "../../../../../../app/utils/cn";
+import { Button } from "../../../../../components/button";
+
+type FiltersModalProps = {
+  isOpen: boolean;
   onClose: () => void;
 };
 
@@ -15,19 +16,16 @@ const mockedBankAccounts = [
   { id: "3", name: "Dinheiro" },
 ];
 
-export const FiltersTransactionsModal = ({
-  open,
-  onClose,
-}: FiltersTransactionsModalProps) => {
+export const FiltersModal = ({ isOpen, onClose }: FiltersModalProps) => {
   const {
     handleSelectBankAccountId,
     selectedBankAccountId,
     selectedYear,
     handleChangeYear,
-  } = useFiltersTransactionsModal();
+  } = useFiltersModal();
 
   return (
-    <Modal open={open} title="Filtros" onClose={onClose}>
+    <Modal isOpen={isOpen} title="Filtros" onClose={onClose}>
       <div>
         <span className="text-lg tracking-[-1px] font-bold text-gray-800">
           Conta

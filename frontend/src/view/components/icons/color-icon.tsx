@@ -1,7 +1,7 @@
-interface ColorIconProps {
+type ColorIconProps = {
   color: string;
   bg: string;
-}
+};
 
 export const ColorIcon = ({ color, bg }: ColorIconProps) => (
   <svg

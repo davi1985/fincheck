@@ -19,17 +19,17 @@ export const Login = () => {
           type="email"
           placeholder="Email"
           {...register("email")}
-          error={errors.email?.message}
+          errorMessage={errors.email?.message}
         />
 
         <Input
           type="password"
           placeholder="Senha"
           {...register("password")}
-          error={errors.password?.message}
+          errorMessage={errors.password?.message}
         />
 
-        <Button type="submit" className="mt-2" loading={isPending}>
+        <Button type="submit" className="mt-2" isLoading={isPending}>
           Entrar
         </Button>
       </form>

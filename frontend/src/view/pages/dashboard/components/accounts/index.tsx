@@ -51,7 +51,7 @@ export const Accounts = () => {
                 className="w-8 h-8 flex items-center justify-center rounded-2xl"
                 onClick={toggleValuesVisibility}
               >
-                <EyeIcon open={!areValuesVisible} />
+                <EyeIcon isOpen={!areValuesVisible} />
               </button>
             </div>
           </div>

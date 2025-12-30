@@ -1,4 +1,4 @@
-import emptyStateIllustration from "../../../../../../assets/empty-state.svg";
+import emptyStateIllustration from "../../../../../assets/empty-state.svg";
 
 export const EmptyTransactions = () => {
   return (

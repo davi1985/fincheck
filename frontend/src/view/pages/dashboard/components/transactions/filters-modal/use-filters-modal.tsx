@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-export const useFiltersTransactionsModal = () => {
+export const useFiltersModal = () => {
   const [selectedBankAccountId, setSelectedBankAccountId] = useState<
     string | null
   >(null);
@@ -9,13 +9,15 @@ export const useFiltersTransactionsModal = () => {
     new Date().getFullYear()
   );
 
-  const handleChangeYear = (step: number) =>
+  const handleChangeYear = useCallback((step: number) => {
     setSelectedYear((prev) => prev + step);
+  }, []);
 
-  const handleSelectBankAccountId = (bankAccountId: string) =>
+  const handleSelectBankAccountId = useCallback((bankAccountId: string) => {
     setSelectedBankAccountId((prevState) =>
       prevState === bankAccountId ? null : bankAccountId
     );
+  }, []);
 
   return {
     selectedBankAccountId,

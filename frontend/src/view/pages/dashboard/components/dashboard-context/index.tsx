@@ -7,10 +7,10 @@ import {
   type PropsWithChildren,
 } from "react";
 
-interface DashboardContextValue {
+type DashboardContextValue = {
   areValuesVisible: boolean;
   toggleValuesVisibility: VoidFunction;
-}
+};
 
 export const DashboardContext = createContext({} as DashboardContextValue);
 

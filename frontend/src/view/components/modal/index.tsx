@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
 export type ModalProps = {
-  open: boolean;
+  isOpen: boolean;
   title: string;
   children: ReactNode;
   onClose?: () => void;
@@ -12,13 +12,13 @@ export type ModalProps = {
 };
 
 export const Modal = ({
-  open,
+  isOpen,
   title,
   children,
   rightAction,
   onClose,
 }: ModalProps) => (
-  <Dialog.Root open={open} onOpenChange={onClose}>
+  <Dialog.Root open={isOpen} onOpenChange={onClose}>
     <Dialog.Portal>
       <Dialog.Overlay
         className={cn(

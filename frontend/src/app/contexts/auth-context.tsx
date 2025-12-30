@@ -19,11 +19,11 @@ type SigninParams = {
   accessToken: string;
 };
 
-interface AuthContextValue {
+type AuthContextValue = {
   signedIn: boolean;
   signin: ({ accessToken }: SigninParams) => void;
   signout: () => void;
-}
+};
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext<AuthContextValue>(

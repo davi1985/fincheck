@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { SliderNavigation } from "../slider-navigation";
-import { MONTHS } from "../../../../../../app/config/constants";
-import { SliderOption } from "../slider-option";
+import { MONTHS } from "../../../../../app/config/constants";
+import { SliderNavigation } from "./slider-navigation";
+import { SliderOption } from "./slider-option";
 
 export const MonthSlider = () => (
   <Swiper centeredSlides grabCursor slidesPerView={3}>
