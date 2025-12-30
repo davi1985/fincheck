@@ -1,4 +1,5 @@
 import { Logo } from "../../components/logo";
+import { Modal } from "../../components/modal";
 import { UserMenu } from "../../components/user-menu";
 import { Accounts } from "./components/accounts";
 import { DashboardProvider } from "./components/dashboard-context";
@@ -23,6 +24,10 @@ export const Dashboard = () => (
       </main>
 
       <Fab />
+
+      <Modal open title="Receitas">
+        Modal Content
+      </Modal>
     </div>
   </DashboardProvider>
 );
