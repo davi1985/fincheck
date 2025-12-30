@@ -1,5 +1,4 @@
 import { Logo } from "../../components/logo";
-import { Modal } from "../../components/modal";
 import { UserMenu } from "../../components/user-menu";
 import { Accounts } from "./components/accounts";
 import { DashboardProvider } from "./components/dashboard-context";
@@ -13,7 +12,6 @@ export const Dashboard = () => (
         <Logo className="h-6 text-teal-900" />
         <UserMenu />
       </header>
-
       <main className="flex-1 flex gap-4 flex-col md:flex-row max-h-full">
         <div className="w-full md:w-1/2">
           <Accounts />
@@ -22,12 +20,7 @@ export const Dashboard = () => (
           <Transactions />
         </div>
       </main>
-
       <Fab />
-
-      <Modal open title="Receitas">
-        Modal Content
-      </Modal>
     </div>
   </DashboardProvider>
 );

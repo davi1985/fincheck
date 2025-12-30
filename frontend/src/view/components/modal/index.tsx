@@ -7,11 +7,18 @@ export type ModalProps = {
   open: boolean;
   title: string;
   children: ReactNode;
+  onClose?: () => void;
   rightAction?: ReactNode;
 };
 
-export const Modal = ({ open, title, children, rightAction }: ModalProps) => (
-  <Dialog.Root open={open}>
+export const Modal = ({
+  open,
+  title,
+  children,
+  rightAction,
+  onClose,
+}: ModalProps) => (
+  <Dialog.Root open={open} onOpenChange={onClose}>
     <Dialog.Portal>
       <Dialog.Overlay
         className={cn(
@@ -26,8 +33,13 @@ export const Modal = ({ open, title, children, rightAction }: ModalProps) => (
           "data-[state=open]:animate-content-show"
         )}
       >
+        <Dialog.Title className="sr-only">{title}</Dialog.Title>
+
         <header className="h-12 flex items-center justify-between text-gray-800">
-          <button className="h-12 w-12">
+          <button
+            className="h-12 w-12 outline-none flex items-center justify-center hover:bg-gray-50 rounded-lg transition-all"
+            onClick={onClose}
+          >
             <Cross2Icon className="w-6 h-6" />
           </button>
 
@@ -38,7 +50,6 @@ export const Modal = ({ open, title, children, rightAction }: ModalProps) => (
           </div>
         </header>
 
-        <div>right action</div>
         <div>{children}</div>
       </Dialog.Content>
     </Dialog.Portal>

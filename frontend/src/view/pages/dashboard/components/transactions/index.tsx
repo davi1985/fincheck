@@ -7,10 +7,18 @@ import { EmptyTransactions } from "./components/empty-transactions";
 import { MonthSlider } from "./components/month-slider";
 import { useTransactionsController } from "./use-transactions-controller";
 import { TransactionTypeDropdown } from "./transaction-type-dropdown";
+import { FiltersTransactionsModal } from "./components/filters-transactions-modal";
 
 export const Transactions = () => {
-  const { areValuesVisible, isInitialLoading, transactions, isLoading } =
-    useTransactionsController();
+  const {
+    areValuesVisible,
+    isInitialLoading,
+    transactions,
+    isLoading,
+    handleCloseFilterModal,
+    handleOpenFilterModal,
+    isFilterModalOpen,
+  } = useTransactionsController();
 
   const hasTransactions = transactions.length > 0;
 
@@ -24,11 +32,16 @@ export const Transactions = () => {
 
       {!isInitialLoading && (
         <>
+          <FiltersTransactionsModal
+            open={isFilterModalOpen}
+            onClose={handleCloseFilterModal}
+          />
+
           <header>
             <div className="flex items-center justify-between">
               <TransactionTypeDropdown />
 
-              <button>
+              <button onClick={handleOpenFilterModal}>
                 <FilterIcon />
               </button>
             </div>
@@ -64,7 +77,7 @@ export const Transactions = () => {
                   <span
                     className={cn(
                       "font-medium tracking-[-0.5px] text-red-800",
-                      !areValuesVisible && "blur-sm",
+                      !areValuesVisible && "blur-sm"
                     )}
                   >
                     {formatCurrency(-20)}
@@ -86,7 +99,7 @@ export const Transactions = () => {
                   <span
                     className={cn(
                       "font-medium tracking-[-0.5px] text-green-800",
-                      !areValuesVisible && "blur-sm",
+                      !areValuesVisible && "blur-sm"
                     )}
                   >
                     {formatCurrency(-20)}
